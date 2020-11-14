@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>LIST APP</title>
+    <link rel="stylesheet" href="/css/style.css">
+  </head>
+  <body>
+    <header>
+      <a href="/" class="header-logo">LIST APP</a>
+    </header>
+    <div class="container">
+      <div class="container-header">
+        <h1>Add a new item to the list.</h1>
+      </div>
+      <div class="item-form-wrapper">
+        <p class="form-label">Name</p>
+        <form action="/create" method="post">
+            <input type="text" name="itemName">
+            <input type="submit" value="Add">
+        </form>
+      </div>
+      <a href="/index" class="cancel-button">back</a>
+    </div>
+  </body>
+</html>
