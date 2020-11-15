@@ -106,6 +106,15 @@ input {
   cursor: pointer;
 }
 
+.top-image {
+  width: 64%;
+  text-align: center;
+  overflow: hidden;
+}
+
+.top-image img {
+  width: 88%;
+}
 
 /* header ================================ */
 header {

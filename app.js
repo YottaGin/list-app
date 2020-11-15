@@ -37,24 +37,28 @@ app.get('/hello', (req, res) => {
 
 
 // routing
+// page top
 app.get('/', (req, res) => {
   res.render('top.ejs');
 });
 
+// page index
 app.get('/index', (req, res) => {
   connection.query(
     'SELECT * FROM items;',
     (error, results) => {
-      console.log(results);
+      // console.log(results);
       res.render('index.ejs', {items: results});
     }
   )
 });
 
+// page new
 app.get('/new', (req, res) => {
   res.render('new.ejs');
 });
 
+// action create
 app.post('/create', (req, res) => {
   connection.query(
     'INSERT INTO items (name) values (?);', [req.body.itemName],
@@ -64,5 +68,35 @@ app.post('/create', (req, res) => {
   );
 });
 
+// action delete
+app.post('/delete/:id', (req, res) => {
+  // console.log(req.params.id);
+  connection.query(
+    'DELETE FROM items where id=?', [req.params.id],
+    (error, results) => {
+      res.redirect('/index');
+    }
+  );
+});
+
+// page edit
+app.get('/edit/:id', (req, res) => {
+  connection.query(
+    'SELECT * FROM items where id=?', [req.params.id],
+    (error, results) => {
+      res.render('edit.ejs', {item: results[0]});
+    }
+  );
+});
+
+// action update
+app.post('/update/:id', (req, res) => {
+  connection.query(
+    'UPDATE items SET name=? WHERE id=?', [req.body.itemName, req.params.id],
+    (error, results) => {
+      res.redirect('/index');
+    }
+  );
+});
 
 app.listen(3000);
